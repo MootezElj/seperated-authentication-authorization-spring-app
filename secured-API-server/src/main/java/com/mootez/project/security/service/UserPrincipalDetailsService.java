@@ -16,13 +16,12 @@ public class UserPrincipalDetailsService implements UserDetailsService {
 
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
     	
         RestTemplate restTemplate = new RestTemplate();
-        User user = restTemplate.getForObject("http://localhost:8083/jwt/"+s+"/", User.class);
+        User user = restTemplate.getForObject("http://localhost:8083/jwt/"+username+"/", User.class);
     	
-    	
-        //****************** OLD
+         //****************** OLD
         //User user = this.userRepository.findByUsername(s);
         UserPrincipal userPrincipal = new UserPrincipal(user);
 
